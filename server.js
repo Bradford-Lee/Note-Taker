@@ -1,13 +1,7 @@
-// import NPM packages & public folder
+// require express and routes
 const express = require('express');
-const path = require('path');
-// const api = require('./public/assets/js/index.js');
-const { v4: uuidv4 } = require('uuid');
-const {
-    readFromFile,
-    readAndAppend,
-    // writeToFile,
-  } = require('./helpers/fsUtils');
+const htmlRoutes = require('./routes/html-routes');
+const apiRoutes = require('./routes/api-routes');
 
 // listen on 3001 port
 const PORT = process.env.port || 3001;
@@ -15,59 +9,21 @@ const PORT = process.env.port || 3001;
 // create new server to configure
 const app = express();
 
-// const app = require('./db/notes.json')
-const fs = require('fs')
-
 // Middleware for parsing JSON and urlencoded form data, front end gets to back end on request data
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// setting up routes
-// app.use('/api', api);
+app.use(express.urlencoded({ extended: false }));
 
 // look for files in public folder
 app.use(express.static('public'));
 
-// GET Route for retrieving all the notes
-// /api/db
-app.get('/', (req, res) => {
-    readFromFile('./db/notes.json').then((data) => res.json(JSON.parse(data)));
-});
-
-// POST
-app.post('/api/notes', (req, res) => {
-    console.log(req.body);
-
-    const {title, text} = req.body;
-
-    if (req.body) {
-        const newNote = {
-            title,
-            text,
-            note_id: uuidv4(),
-        };
-
-        readAndAppend(newNote, './db/notes.json');
-        res.json('Note added successfully');
-    } else {
-        res.error('Error in adding note');
-    }
-    // fs.writeFileSync('./db/notes.json', JSON.stringify(data));
-    // res.json(data);
-});
+// setting up routes
+app.use('/api', apiRoutes);
+app.use('/api', htmlRoutes);
 
 
-// HTML Routes
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
-app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'notes.html'))
-})
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'public', 'index.html'))
+// })
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT}`)
 );
@@ -90,3 +46,5 @@ app.listen(PORT, () =>
 //   });
 
 // module.exports = notes;
+
+// module.exports = router;
