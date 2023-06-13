@@ -4,7 +4,7 @@ const htmlRoutes = require('./routes/html-routes');
 const apiRoutes = require('./routes/api-routes');
 
 // listen on 3001 port
-const PORT = process.env.port || 3001;
+const PORT = process.env.PORT || 3001;
 
 // create new server to configure
 const app = express();
