@@ -18,33 +18,8 @@ app.use(express.static('public'));
 
 // setting up routes
 app.use('/api', apiRoutes);
-app.use('/api', htmlRoutes);
+app.use('/', htmlRoutes);
 
-
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'public', 'index.html'))
-// })
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT}`)
 );
-
-// DELETE
-// notes.delete('/:note_id', (req, res) => {
-//     const noteId = req.params.note_id;
-//     readFromFile('./db/notes.json')
-//       .then((data) => JSON.parse(data))
-//       .then((json) => {
-//         // Make a new array of all tips except the one with the ID provided in the URL
-//         const result = json.filter((note) => note.note_id !== noteId);
-  
-//         // Save that array to the filesystem
-//         writeToFile('./db/notes.json', result);
-  
-//         // Respond to the DELETE request
-//         res.json(`Item ${noteId} has been deleted 🗑️`);
-//       });
-//   });
-
-// module.exports = notes;
-
-// module.exports = router;
