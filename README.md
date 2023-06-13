@@ -16,10 +16,13 @@ Download the files in the Note-Taker repository which contains the html, css, ro
 ## Usage
 View the Note-Taker site on Heroku here: 
 
+![note-taker](https://github.com/Bradford-Lee/Note-Taker/assets/127280322/ae63df85-a9b9-48ca-b233-7d83779439a1)
+
+![notes](https://github.com/Bradford-Lee/Note-Taker/assets/127280322/5fb2f249-d31d-47cc-ba29-04e20de21670)
+
 
 ## Contributing
-TA Dominique Meeks Gombe
-TA Yi Jin
+TAs Dominique Meeks Gombe & Yi Jin, 
 Instructor Samantha Rudolph 
 
 ## License
